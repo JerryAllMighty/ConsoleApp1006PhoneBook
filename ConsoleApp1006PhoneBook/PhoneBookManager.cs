@@ -12,28 +12,23 @@ namespace ConsolePhoneBook
 {
     public class PhoneBookManager
     {
-        public override string ToString()
-        {
-            string str = $@"취미는 {this.Hobby}이고, 좋아하는 음식은 {this.Food}입니다.";
-            return str;
-        }
-
-        public string Hobby { get; set; }
-        public string Food { get; set; }
+        static PhoneBookManager inst = null;
 
         #region 생성자
-        public PhoneBookManager()
+        private PhoneBookManager()
         {
 
-        }
-
-        public PhoneBookManager(string hobby, string food)
-        {
-            this.Hobby = hobby;
-            this.Food = food;
         }
         #endregion
-          
+
+        public static PhoneBookManager CreateInstance()
+        {
+            if (inst == null)
+            { inst = new PhoneBookManager(); }
+            return inst;
+        }
+        
+            
         HashSet<PhoneInfo> infoStorage = new HashSet<PhoneInfo>();
         string fileName = "jerry.dat";
 
